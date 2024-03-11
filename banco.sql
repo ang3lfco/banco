@@ -55,3 +55,17 @@ CREATE TABLE Operaciones(
     FOREIGN KEY (id) REFERENCES Clientes (id),
     FOREIGN KEY (numeroCuenta) REFERENCES Cuentas (numeroCuenta)
 );
+
+CREATE TABLE RetirosSC(
+	idRetiro INT PRIMARY KEY auto_increment,
+    folio varchar(8), /* Generar UUID y limitar a 8 caracteres SUBSTRING(UUID(), 1, 8) */
+    clave varchar(8), /* Generar clave MD5 y limitar a 8 caracteres SUBSTRING(MD5(RAND()), 1, 8) */
+    monto DECIMAL(10,2),
+    estado TINYINT DEFAULT 0, /* 0 = false(no retirado) | 1 = true(retirado) */
+    id INT,
+    numeroCuenta INT,
+    FOREIGN KEY (id) REFERENCES Clientes (id),
+    FOREIGN KEY (numeroCuenta) REFERENCES Cuentas (numeroCuenta)
+);
+
+

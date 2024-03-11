@@ -4,8 +4,13 @@
  */
 package ui;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import ux.ConexionBD;
 import ux.Conversiones;
 
 /**
@@ -35,7 +40,7 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
 
         cmbCuentas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         imgCancelar2 = new javax.swing.JLabel();
         imgAceptar = new javax.swing.JLabel();
         pnlMove1 = new javax.swing.JPanel();
@@ -53,10 +58,10 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel1.setText("Cuenta de Origen:");
 
-        jTextField1.setBackground(new java.awt.Color(0, 51, 51));
-        jTextField1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Monto");
+        txtMonto.setBackground(new java.awt.Color(0, 51, 51));
+        txtMonto.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        txtMonto.setForeground(new java.awt.Color(255, 255, 255));
+        txtMonto.setText("Monto");
 
         imgCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         imgCancelar2.setText("Cancelar");
@@ -70,6 +75,11 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
         imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgAceptarMouseClicked(evt);
+            }
+        });
 
         pnlMove1.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -113,7 +123,7 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addComponent(cmbCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imgCancelar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,7 +139,7 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imgCancelar2)
@@ -158,6 +168,54 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_imgMinimizarMouseClicked
+
+    private void imgAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAceptarMouseClicked
+        // TODO add your handling code here:
+        double monto = Double.parseDouble(txtMonto.getText());
+        String id = idClienteEnSesion;
+        String numeroCuenta = cmbCuentas.getSelectedItem().toString();
+        
+        try{
+            Connection conexion = ConexionBD.openConnection();
+            conexion.setAutoCommit(false);
+            
+            String script = "INSERT INTO RetirosSC (folio, clave, monto, id, numeroCuenta) VALUES (SUBSTRING(UUID(), 1, 8), SUBSTRING(MD5(RAND()), 1, 8), ?, ?, ?)";
+            PreparedStatement pstm = conexion.prepareStatement(script);
+            pstm.setDouble(1, monto);
+            pstm.setString(2, id);
+            pstm.setString(3, numeroCuenta);
+            
+            int filasInsertadas = pstm.executeUpdate();
+            if(filasInsertadas > 0){
+                String tipoOperacion = "GeneracionRetiroSC";
+                
+                String operacion = "INSERT INTO Operaciones (fechaOperacion, tipoOperacion, cuentaOrigen, "
+                        + "cuentaDestino, monto, id, numeroCuenta) "
+                        + "VALUES(CURDATE(), ?, ?, NULL, ?, ?, ?)";
+                PreparedStatement pstmOperacion = conexion.prepareStatement(operacion);
+                pstmOperacion.setString(1, tipoOperacion);
+                pstmOperacion.setString(2, numeroCuenta);
+                pstmOperacion.setDouble(3, monto);
+                pstmOperacion.setString(4, id);
+                pstmOperacion.setString(5, numeroCuenta);
+                
+                int filasInsertadasOp = pstmOperacion.executeUpdate();
+                if(filasInsertadasOp > 0){
+                    conexion.commit();
+                    JOptionPane.showMessageDialog(this, "Retiro generado con exito. ");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error al generar la operacion. ");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Error al generar el retiro. ");
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "Error al establecer la conexion. " + e.getMessage());
+        }
+    }//GEN-LAST:event_imgAceptarMouseClicked
     
     private void cargarCuentasCliente(){
         cmbCuentas.removeAllItems();
@@ -177,7 +235,7 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel imgCerrar1;
     private javax.swing.JLabel imgMinimizar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlMove1;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }
