@@ -66,4 +66,32 @@ public class Conversiones {
         }
         return nombreCliente;
     }
+    
+    public List<List<Object>> obtenerHistorialOperaciones(String idCliente){
+        List<List<Object>> historialOperaciones = new ArrayList<>();
+        try {
+            Connection conexion = ConexionBD.openConnection();
+            String consulta = "SELECT folio, fechaOperacion, tipoOperacion, cuentaOrigen, cuentaDestino, monto FROM Operaciones WHERE id=?";
+            try {
+                PreparedStatement pstm = conexion.prepareStatement(consulta);
+                pstm.setString(1, idCliente);
+                ResultSet rs = pstm.executeQuery();
+                while (rs.next()) {
+                    List<Object> operacion = new ArrayList<>();
+                    operacion.add(rs.getInt("folio"));
+                    operacion.add(rs.getDate("fechaOperacion"));
+                    operacion.add(rs.getString("tipoOperacion"));
+                    operacion.add(rs.getInt("cuentaOrigen"));
+                    operacion.add(rs.getInt("cuentaDestino"));
+                    operacion.add(rs.getDouble("monto"));
+                    historialOperaciones.add(operacion);
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cargar el historial. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar el historial." + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return historialOperaciones;
+    }
 }

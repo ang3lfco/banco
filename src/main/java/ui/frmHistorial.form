@@ -35,11 +35,11 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblConsultarPeriodo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="jTextField2" min="-2" pref="214" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="214" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFechaHasta" min="-2" pref="214" max="-2" attributes="0"/>
+                              <Component id="txtFechaDesde" min="-2" pref="214" max="-2" attributes="0"/>
+                              <Component id="btnConsultar" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jSeparator1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                       </Group>
@@ -55,15 +55,15 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="pnlMove2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lblConsultarPeriodo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtFechaDesde" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+              <Component id="txtFechaHasta" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtFechaDesde">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>
@@ -85,7 +85,7 @@
         <Property name="text" type="java.lang.String" value="desde (aaaa/mm/dd)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="txtFechaHasta">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>
@@ -96,7 +96,7 @@
         <Property name="text" type="java.lang.String" value="hasta (aaaa/mm/dd)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnConsultar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar"/>
       </Properties>
@@ -108,7 +108,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblHistorial">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="0" type="rgb"/>
@@ -129,7 +129,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblConsultarPeriodo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar por periodo"/>
       </Properties>
@@ -165,7 +165,7 @@
         <Component class="javax.swing.JLabel" name="imgCerrar2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/cerrar.png"/>
+              <Image iconType="3" name="/imagenes/cerrar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -175,7 +175,7 @@
         <Component class="javax.swing.JLabel" name="imgMinimizar2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/minimizar.png"/>
+              <Image iconType="3" name="/imagenes/minimizar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -187,7 +187,7 @@
     <Component class="javax.swing.JLabel" name="imgVolver1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/back.png"/>
+          <Image iconType="3" name="/imagenes/back.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Volver"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

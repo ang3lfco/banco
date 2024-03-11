@@ -87,7 +87,7 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
         txtFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
         txtFechaNacimiento.setText("Fecha de Nacimiento (aaaa/mm/dd)");
 
-        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/aceptar.png"))); // NOI18N
+        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +96,7 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
             }
         });
 
-        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/boton-eliminar.png"))); // NOI18N
+        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         imgCancelar.setText("Cancelar");
         imgCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,14 +107,14 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
 
         pnlMove1.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
+        imgCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         imgCerrar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrar1MouseClicked(evt);
             }
         });
 
-        imgMinimizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
+        imgMinimizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar.png"))); // NOI18N
         imgMinimizar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizar1MouseClicked(evt);

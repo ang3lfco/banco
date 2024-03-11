@@ -62,14 +62,14 @@ public class frmConsultarCuentas extends javax.swing.JFrame {
 
         pnlMove1.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
+        imgCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         imgCerrar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrar1MouseClicked(evt);
             }
         });
 
-        imgMinimizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
+        imgMinimizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar.png"))); // NOI18N
         imgMinimizar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizar1MouseClicked(evt);
@@ -92,7 +92,7 @@ public class frmConsultarCuentas extends javax.swing.JFrame {
             .addComponent(imgMinimizar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        imgVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/back.png"))); // NOI18N
+        imgVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
         imgVolver.setText("Volver");
         imgVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgVolver.addMouseListener(new java.awt.event.MouseAdapter() {

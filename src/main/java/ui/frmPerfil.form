@@ -90,7 +90,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Martinez\Desktop\banco\src\main\java\resources\perfil.png"/>
+          <Image iconType="3" name="/imagenes/perfil.png"/>
         </Property>
       </Properties>
     </Component>
@@ -185,7 +185,7 @@
     <Component class="javax.swing.JLabel" name="imgAceptar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/aceptar.png"/>
+          <Image iconType="3" name="/imagenes/aceptar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -196,7 +196,7 @@
     <Component class="javax.swing.JLabel" name="imgCancelar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/boton-eliminar.png"/>
+          <Image iconType="3" name="/imagenes/cancelar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

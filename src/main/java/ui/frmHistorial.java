@@ -4,7 +4,11 @@
  */
 package ui;
 
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import ux.Conversiones;
 
 /**
  *
@@ -21,6 +25,7 @@ public class frmHistorial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         this.idClienteEnSesion = id;
+        cargarHistorial();
     }
 
     /**
@@ -30,12 +35,12 @@ public class frmHistorial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtFechaDesde = new javax.swing.JTextField();
+        txtFechaHasta = new javax.swing.JTextField();
+        btnConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        tblHistorial = new javax.swing.JTable();
+        lblConsultarPeriodo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         pnlMove2 = new javax.swing.JPanel();
         imgCerrar2 = new javax.swing.JLabel();
@@ -45,19 +50,19 @@ public class frmHistorial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jTextField1.setBackground(new java.awt.Color(0, 51, 51));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("desde (aaaa/mm/dd)");
+        txtFechaDesde.setBackground(new java.awt.Color(0, 51, 51));
+        txtFechaDesde.setForeground(new java.awt.Color(255, 255, 255));
+        txtFechaDesde.setText("desde (aaaa/mm/dd)");
 
-        jTextField2.setBackground(new java.awt.Color(0, 51, 51));
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setText("hasta (aaaa/mm/dd)");
+        txtFechaHasta.setBackground(new java.awt.Color(0, 51, 51));
+        txtFechaHasta.setForeground(new java.awt.Color(255, 255, 255));
+        txtFechaHasta.setText("hasta (aaaa/mm/dd)");
 
-        jButton1.setText("Consultar");
+        btnConsultar.setText("Consultar");
 
-        jTable1.setBackground(new java.awt.Color(0, 51, 51));
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHistorial.setBackground(new java.awt.Color(0, 51, 51));
+        tblHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        tblHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -68,21 +73,21 @@ public class frmHistorial extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setFillsViewportHeight(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblHistorial.setFillsViewportHeight(true);
+        jScrollPane1.setViewportView(tblHistorial);
 
-        jLabel1.setText("Consultar por periodo");
+        lblConsultarPeriodo.setText("Consultar por periodo");
 
         pnlMove2.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
+        imgCerrar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         imgCerrar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrar2MouseClicked(evt);
             }
         });
 
-        imgMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
+        imgMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/minimizar.png"))); // NOI18N
         imgMinimizar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizar2MouseClicked(evt);
@@ -105,7 +110,7 @@ public class frmHistorial extends javax.swing.JFrame {
             .addComponent(imgMinimizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        imgVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/back.png"))); // NOI18N
+        imgVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
         imgVolver1.setText("Volver");
         imgVolver1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgVolver1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,11 +133,11 @@ public class frmHistorial extends javax.swing.JFrame {
                         .addComponent(imgVolver1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblConsultarPeriodo)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1))
+                                .addComponent(txtFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnConsultar))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -142,15 +147,15 @@ public class frmHistorial extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlMove2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblConsultarPeriodo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jButton1)
+                .addComponent(btnConsultar)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,19 +182,38 @@ public class frmHistorial extends javax.swing.JFrame {
         frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
         menuPrincipal.setVisible(true);
     }//GEN-LAST:event_imgVolver1MouseClicked
-
+    
+    private void cargarHistorial() {
+        Conversiones conversiones = new Conversiones();
+        List<List<Object>> historial = conversiones.obtenerHistorialOperaciones(idClienteEnSesion);
+        if (historial != null && !historial.isEmpty()) {
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Folio");
+            model.addColumn("Fecha de Operacion");
+            model.addColumn("Tipo de Operacion");
+            model.addColumn("Cuenta Origen");
+            model.addColumn("Cuenta Destino");
+            model.addColumn("Monto");
+            for (List<Object> operacion : historial) {
+                model.addRow(operacion.toArray());
+            }
+            tblHistorial.setModel(model);
+        } else {
+            JOptionPane.showMessageDialog(null, "El historial esta vacio. ", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JLabel imgCerrar2;
     private javax.swing.JLabel imgMinimizar2;
     private javax.swing.JLabel imgVolver1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblConsultarPeriodo;
     private javax.swing.JPanel pnlMove2;
+    private javax.swing.JTable tblHistorial;
+    private javax.swing.JTextField txtFechaDesde;
+    private javax.swing.JTextField txtFechaHasta;
     // End of variables declaration//GEN-END:variables
 }

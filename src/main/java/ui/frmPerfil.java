@@ -100,7 +100,7 @@ public class frmPerfil extends javax.swing.JFrame {
         setUndecorated(true);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\banco\\src\\main\\java\\resources\\perfil.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/perfil.png"))); // NOI18N
 
         txtNombres.setBackground(new java.awt.Color(0, 51, 51));
         txtNombres.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,11 +134,11 @@ public class frmPerfil extends javax.swing.JFrame {
         txtFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
         txtFechaNacimiento.setText("Fecha de Nacimiento (aaaa/mm/dd)");
 
-        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/aceptar.png"))); // NOI18N
+        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/boton-eliminar.png"))); // NOI18N
+        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         imgCancelar.setText("Cancelar");
         imgCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
