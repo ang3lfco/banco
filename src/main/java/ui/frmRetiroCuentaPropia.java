@@ -46,14 +46,14 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
 
         pnlMove1.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\cerrar.png")); // NOI18N
+        imgCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
         imgCerrar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrar1MouseClicked(evt);
             }
         });
 
-        imgMinimizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\minimizar.png")); // NOI18N
+        imgMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
         imgMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizarMouseClicked(evt);
@@ -89,7 +89,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("Monto");
 
-        imgCancelar2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\boton-eliminar.png")); // NOI18N
+        imgCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/boton-eliminar.png"))); // NOI18N
         imgCancelar2.setText("Cancelar");
         imgCancelar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgCancelar2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +98,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
             }
         });
 
-        imgAceptar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\aceptar.png")); // NOI18N
+        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 

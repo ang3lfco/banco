@@ -58,14 +58,14 @@ public class frmLogin extends javax.swing.JFrame {
 
         pnlMove.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\cerrar.png")); // NOI18N
+        imgCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
         imgCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrarMouseClicked(evt);
             }
         });
 
-        imgMinimizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\minimizar.png")); // NOI18N
+        imgMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
         imgMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizarMouseClicked(evt);
@@ -93,7 +93,7 @@ public class frmLogin extends javax.swing.JFrame {
         txtID.setText("ID");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\banco.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/banco.png"))); // NOI18N
 
         btnIniciarSesion.setForeground(new java.awt.Color(0, 51, 51));
         btnIniciarSesion.setText("Iniciar Sesion");
@@ -167,7 +167,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addComponent(lblRegistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblRetiroSinCuenta)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

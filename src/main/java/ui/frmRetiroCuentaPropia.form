@@ -91,7 +91,7 @@
         <Component class="javax.swing.JLabel" name="imgCerrar1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\cerrar.png"/>
+              <Image iconType="3" name="/resources/cerrar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -101,7 +101,7 @@
         <Component class="javax.swing.JLabel" name="imgMinimizar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\minimizar.png"/>
+              <Image iconType="3" name="/resources/minimizar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -159,7 +159,7 @@
     <Component class="javax.swing.JLabel" name="imgCancelar2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\boton-eliminar.png"/>
+          <Image iconType="3" name="/resources/boton-eliminar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -173,7 +173,7 @@
     <Component class="javax.swing.JLabel" name="imgAceptar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\aceptar.png"/>
+          <Image iconType="3" name="/resources/aceptar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

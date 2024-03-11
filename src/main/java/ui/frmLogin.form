@@ -85,7 +85,7 @@
               <Component id="lblRegistrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblRetiroSinCuenta" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,7 +120,7 @@
         <Component class="javax.swing.JLabel" name="imgCerrar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\cerrar.png"/>
+              <Image iconType="3" name="/resources/cerrar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -130,7 +130,7 @@
         <Component class="javax.swing.JLabel" name="imgMinimizar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\minimizar.png"/>
+              <Image iconType="3" name="/resources/minimizar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -156,7 +156,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\banco.png"/>
+          <Image iconType="3" name="/resources/banco.png"/>
         </Property>
       </Properties>
     </Component>

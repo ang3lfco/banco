@@ -165,7 +165,7 @@
         <Component class="javax.swing.JLabel" name="imgCerrar2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\cerrar.png"/>
+              <Image iconType="3" name="/resources/cerrar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -175,7 +175,7 @@
         <Component class="javax.swing.JLabel" name="imgMinimizar2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\minimizar.png"/>
+              <Image iconType="3" name="/resources/minimizar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -187,7 +187,7 @@
     <Component class="javax.swing.JLabel" name="imgVolver1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\atras.png"/>
+          <Image iconType="3" name="/resources/back.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Volver"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

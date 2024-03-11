@@ -72,7 +72,7 @@ public class frmTransferencia extends javax.swing.JFrame {
         txtCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
         txtCuentaDestino.setText("Cuenta de Destino");
 
-        imgCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\boton-eliminar.png")); // NOI18N
+        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/boton-eliminar.png"))); // NOI18N
         imgCancelar.setText("Cancelar");
         imgCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,7 +81,7 @@ public class frmTransferencia extends javax.swing.JFrame {
             }
         });
 
-        imgAceptar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\aceptar.png")); // NOI18N
+        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,14 +92,14 @@ public class frmTransferencia extends javax.swing.JFrame {
 
         pnlMove3.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\cerrar.png")); // NOI18N
+        imgCerrar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
         imgCerrar3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrar3MouseClicked(evt);
             }
         });
 
-        imgMinimizar2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\minimizar.png")); // NOI18N
+        imgMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
         imgMinimizar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizar2MouseClicked(evt);
@@ -199,23 +199,39 @@ public class frmTransferencia extends javax.swing.JFrame {
         try{
             Connection conexion = ConexionBD.openConnection();
             conexion.setAutoCommit(false);
-            String verificacion = "SELECT saldo FROM Cuentas WHERE numeroCuenta=?";
-            PreparedStatement pstmVerificar = conexion.prepareStatement(verificacion);
-            pstmVerificar.setString(1, cuentaOrigen);
-            ResultSet rs = pstmVerificar.executeQuery();
             
-            if(rs.next()){
-                double salgoOrigen = rs.getDouble("saldo");
+            String verificacionOrigen = "SELECT saldo FROM Cuentas WHERE numeroCuenta=?";
+            PreparedStatement pstmVerificarOrigen = conexion.prepareStatement(verificacionOrigen);
+            pstmVerificarOrigen.setString(1, cuentaOrigen);
+            ResultSet rsOrigen = pstmVerificarOrigen.executeQuery();
+
+            String verificacionDestino = "SELECT saldo FROM Cuentas WHERE numeroCuenta=?";
+            PreparedStatement pstmVerificarDestino = conexion.prepareStatement(verificacionDestino);
+            pstmVerificarDestino.setString(1, cuentaDestino);
+            ResultSet rsDestino = pstmVerificarDestino.executeQuery();
+            
+            if(rsOrigen.next() && rsDestino.next()){
+                double salgoOrigen = rsOrigen.getDouble("saldo");
+                double saldoDestino = rsDestino.getDouble("saldo");
+
                 if(salgoOrigen >= monto){
+                    double nuevoSaldoOrigen = salgoOrigen - monto;
+                    double nuevoSaldoDestino = saldoDestino + monto;
                     
-                    double nuevoSalgoOrigen = salgoOrigen - monto;
-                    String actualizarSalgoCuentaOrigen = "UPDATE Cuentas SET saldo=? WHERE numeroCuenta=?";
-                    PreparedStatement pstmRestarOrigen = conexion.prepareStatement(actualizarSalgoCuentaOrigen);
-                    pstmRestarOrigen.setDouble(1, nuevoSalgoOrigen);
+                    String actualizarSaldoOrigen = "UPDATE Cuentas SET saldo=? WHERE numeroCuenta=?";
+                    PreparedStatement pstmRestarOrigen = conexion.prepareStatement(actualizarSaldoOrigen);
+                    pstmRestarOrigen.setDouble(1, nuevoSaldoOrigen);
                     pstmRestarOrigen.setString(2, cuentaOrigen);
-                    
-                    int filasActualizadas = pstmRestarOrigen.executeUpdate();
-                    if(filasActualizadas > 0){
+                    int filasActualizadasOrigen = pstmRestarOrigen.executeUpdate();
+
+                    String actualizarSaldoDestino = "UPDATE Cuentas SET saldo=? WHERE numeroCuenta=?";
+                    PreparedStatement pstmSumarDestino = conexion.prepareStatement(actualizarSaldoDestino);
+                    pstmSumarDestino.setDouble(1, nuevoSaldoDestino);
+                    pstmSumarDestino.setString(2, cuentaDestino);
+                    int filasActualizadasDestino = pstmSumarDestino.executeUpdate();
+
+
+                    if(filasActualizadasOrigen > 0 && filasActualizadasDestino > 0){
                         String transferencia = "INSERT INTO Operaciones (fechaOperacion, tipoOperacion, cuentaOrigen, cuentaDestino, monto, id, numeroCuenta) VALUES (?,?,?,?,?,?,?)";
                         PreparedStatement pstm = conexion.prepareStatement(transferencia);
                         pstm.setString(1, fechaOperacion);
@@ -235,6 +251,9 @@ public class frmTransferencia extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Error al momento de transferir.");
                         }
                     }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Saldo insuficiente en la cuenta de origen.");
                 }
             }
         }

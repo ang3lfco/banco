@@ -75,14 +75,14 @@ public class frmHistorial extends javax.swing.JFrame {
 
         pnlMove2.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\cerrar.png")); // NOI18N
+        imgCerrar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
         imgCerrar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrar2MouseClicked(evt);
             }
         });
 
-        imgMinimizar2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\minimizar.png")); // NOI18N
+        imgMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
         imgMinimizar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizar2MouseClicked(evt);
@@ -105,7 +105,7 @@ public class frmHistorial extends javax.swing.JFrame {
             .addComponent(imgMinimizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        imgVolver1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\atras.png")); // NOI18N
+        imgVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/back.png"))); // NOI18N
         imgVolver1.setText("Volver");
         imgVolver1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgVolver1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,27 +122,20 @@ public class frmHistorial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(461, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(imgVolver1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(imgVolver1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +182,6 @@ public class frmHistorial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgCerrar2;
     private javax.swing.JLabel imgMinimizar2;
-    private javax.swing.JLabel imgVolver;
     private javax.swing.JLabel imgVolver1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

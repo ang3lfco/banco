@@ -63,14 +63,14 @@ public class frmRetiroTipo extends javax.swing.JFrame {
 
         pnlMove.setBackground(new java.awt.Color(0, 51, 51));
 
-        imgCerrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\cerrar.png")); // NOI18N
+        imgCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar.png"))); // NOI18N
         imgCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgCerrarMouseClicked(evt);
             }
         });
 
-        imgMinimizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\minimizar.png")); // NOI18N
+        imgMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimizar.png"))); // NOI18N
         imgMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgMinimizarMouseClicked(evt);
@@ -93,11 +93,11 @@ public class frmRetiroTipo extends javax.swing.JFrame {
             .addComponent(imgMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        imgAceptar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\aceptar.png")); // NOI18N
+        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        imgCancelar3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\boton-eliminar.png")); // NOI18N
+        imgCancelar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/boton-eliminar.png"))); // NOI18N
         imgCancelar3.setText("Cancelar");
         imgCancelar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgCancelar3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,7 +178,6 @@ public class frmRetiroTipo extends javax.swing.JFrame {
     private javax.swing.JButton btnRetiroCuentaPropia;
     private javax.swing.JButton btnRetiroSinCuenta;
     private javax.swing.JLabel imgAceptar;
-    private javax.swing.JLabel imgCancelar2;
     private javax.swing.JLabel imgCancelar3;
     private javax.swing.JLabel imgCerrar;
     private javax.swing.JLabel imgMinimizar;

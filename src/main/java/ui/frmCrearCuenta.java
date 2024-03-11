@@ -67,7 +67,7 @@ public class frmCrearCuenta extends javax.swing.JFrame {
         txtIdCliente.setForeground(new java.awt.Color(255, 255, 255));
         txtIdCliente.setText("ID de Cliente");
 
-        imgCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\boton-eliminar.png")); // NOI18N
+        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/boton-eliminar.png"))); // NOI18N
         imgCancelar.setText("Cancelar");
         imgCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,7 +76,7 @@ public class frmCrearCuenta extends javax.swing.JFrame {
             }
         });
 
-        imgAceptar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Martinez\\Desktop\\proyectoBanco\\src\\main\\java\\resources\\aceptar.png")); // NOI18N
+        imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imgAceptar.addMouseListener(new java.awt.event.MouseAdapter() {

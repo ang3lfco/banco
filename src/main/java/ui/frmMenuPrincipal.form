@@ -24,35 +24,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlMove3" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlMove3" max="32767" attributes="0"/>
+          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblCliente" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="pnlTransferir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="pnlPerfil" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="pnlRetirar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblCerrarSesion" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="pnlRetirar" max="32767" attributes="0"/>
+                                  <Component id="pnlRegistrar" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="pnlCuentas" max="32767" attributes="0"/>
                                   <Component id="pnlHistorial" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="pnlRegistrar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="pnlCuentas" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
-                          <Component id="lblCerrarSesion" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="pnlTransferir" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pnlPerfil" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="lblCliente" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -64,11 +63,11 @@
               <Component id="pnlMove3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblCerrarSesion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="104" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" pref="104" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pnlRegistrar" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="pnlCuentas" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -110,7 +109,7 @@
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -136,7 +135,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\registrar-cuenta.png"/>
+              <Image iconType="3" name="/resources/registrar-cuenta.png"/>
             </Property>
           </Properties>
         </Component>
@@ -174,7 +173,7 @@
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -200,7 +199,7 @@
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\retiro-de-efectivo.png"/>
+              <Image iconType="3" name="/resources/retiro-de-efectivo.png"/>
             </Property>
           </Properties>
         </Component>
@@ -238,7 +237,7 @@
                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -264,7 +263,7 @@
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\consulta.png"/>
+              <Image iconType="3" name="/resources/consulta.png"/>
             </Property>
           </Properties>
         </Component>
@@ -328,7 +327,7 @@
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\historial.png"/>
+              <Image iconType="3" name="/resources/historial.png"/>
             </Property>
           </Properties>
         </Component>
@@ -392,7 +391,7 @@
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\perfil.png"/>
+              <Image iconType="3" name="/resources/perfil.png"/>
             </Property>
           </Properties>
         </Component>
@@ -413,7 +412,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\bienvenidos.png"/>
+          <Image iconType="3" name="/resources/bienvenidos.png"/>
         </Property>
       </Properties>
     </Component>
@@ -450,7 +449,7 @@
                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="81" max="32767" attributes="0"/>
+                  <EmptySpace pref="65" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -476,7 +475,7 @@
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\transferir (1).png"/>
+              <Image iconType="3" name="/resources/transferir (1).png"/>
             </Property>
           </Properties>
         </Component>
@@ -522,7 +521,7 @@
         <Component class="javax.swing.JLabel" name="imgCerrar3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\cerrar.png"/>
+              <Image iconType="3" name="/resources/cerrar.png"/>
             </Property>
           </Properties>
           <Events>
@@ -532,7 +531,7 @@
         <Component class="javax.swing.JLabel" name="imgMinimizar3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Martinez\Desktop\proyectoBanco\src\main\java\resources\minimizar.png"/>
+              <Image iconType="3" name="/resources/minimizar.png"/>
             </Property>
           </Properties>
           <Events>
