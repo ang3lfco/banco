@@ -51,6 +51,7 @@ ui\frmLogin.class
 ui\frmHistorial$1.class
 ui\frmRetiroSinCuenta$4.class
 ui\frmConsultarCuentas.class
+ui\frmPerfil$2.class
 ui\frmConsultarCuentas$2.class
 ui\frmLogin$3.class
 ui\frmRegistrarCliente$4.class
