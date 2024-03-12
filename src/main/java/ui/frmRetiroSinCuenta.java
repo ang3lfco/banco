@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JFrame;
 
 /**
@@ -21,6 +23,40 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         this.idClienteEnSesion = id;
+        
+        // Agregar un FocusListener
+        txtFolio.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtFolio.getText().equals("Folio")) {
+                    txtFolio.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtFolio.getText().isEmpty()) {
+                    txtFolio.setText("Folio");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtClave.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtClave.getText().equals("clave")) {
+                    txtClave.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtClave.getText().isEmpty()) {
+                    txtClave.setText("Clave");
+                }
+            }
+        });
     }
 
     /**
@@ -30,8 +66,8 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtFolio = new javax.swing.JTextField();
+        txtClave = new javax.swing.JTextField();
         imgCancelar2 = new javax.swing.JLabel();
         imgAceptar = new javax.swing.JLabel();
         pnlMove = new javax.swing.JPanel();
@@ -41,15 +77,15 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jTextField1.setBackground(new java.awt.Color(0, 51, 51));
-        jTextField1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Numero de Folio");
+        txtFolio.setBackground(new java.awt.Color(0, 51, 51));
+        txtFolio.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        txtFolio.setForeground(new java.awt.Color(255, 255, 255));
+        txtFolio.setText("Folio");
 
-        jTextField2.setBackground(new java.awt.Color(0, 51, 51));
-        jTextField2.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setText("Clave");
+        txtClave.setBackground(new java.awt.Color(0, 51, 51));
+        txtClave.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        txtClave.setForeground(new java.awt.Color(255, 255, 255));
+        txtClave.setText("Clave");
 
         imgCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         imgCancelar2.setText("Cancelar");
@@ -104,8 +140,8 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFolio)
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imgCancelar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,9 +153,9 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlMove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imgCancelar2)
@@ -155,8 +191,8 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel imgCancelar2;
     private javax.swing.JLabel imgCerrar;
     private javax.swing.JLabel imgMinimizar;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel pnlMove;
+    private javax.swing.JTextField txtClave;
+    private javax.swing.JTextField txtFolio;
     // End of variables declaration//GEN-END:variables
 }

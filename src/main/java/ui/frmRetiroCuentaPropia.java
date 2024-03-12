@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.List;
 import javax.swing.JFrame;
 import ux.Conversiones;
@@ -23,6 +25,23 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         
         this.idClienteEnSesion = id;
         cargarCuentasCliente();
+        
+        // Agregar un FocusListener
+        txtMonto.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtMonto.getText().equals("Monto")) {
+                    txtMonto.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtMonto.getText().isEmpty()) {
+                    txtMonto.setText("Monto");
+                }
+            }
+        });
     }
 
     /**
@@ -37,7 +56,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         imgMinimizar = new javax.swing.JLabel();
         cmbCuentas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         imgCancelar2 = new javax.swing.JLabel();
         imgAceptar = new javax.swing.JLabel();
 
@@ -84,10 +103,10 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel1.setText("Cuenta de Origen:");
 
-        jTextField1.setBackground(new java.awt.Color(0, 51, 51));
-        jTextField1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Monto");
+        txtMonto.setBackground(new java.awt.Color(0, 51, 51));
+        txtMonto.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        txtMonto.setForeground(new java.awt.Color(255, 255, 255));
+        txtMonto.setText("Monto");
 
         imgCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         imgCancelar2.setText("Cancelar");
@@ -112,7 +131,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addComponent(cmbCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imgCancelar2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,7 +147,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imgCancelar2)
@@ -176,7 +195,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
     private javax.swing.JLabel imgCerrar1;
     private javax.swing.JLabel imgMinimizar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlMove1;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

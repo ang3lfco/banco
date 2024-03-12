@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +30,142 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         this.idClienteEnSesion = id;
+        
+        // Agregar un FocusListener
+        txtNombres.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtNombres.getText().equals("Nombre(s)")) {
+                    txtNombres.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtNombres.getText().isEmpty()) {
+                    txtNombres.setText("Nombre(s)");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtApPaterno.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtApPaterno.getText().equals("Apellido Paterno")) {
+                    txtApPaterno.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtApPaterno.getText().isEmpty()) {
+                    txtApPaterno.setText("Apellido Paterno");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtApMaterno.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtApMaterno.getText().equals("Apellido Materno")) {
+                    txtApMaterno.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtApMaterno.getText().isEmpty()) {
+                    txtApMaterno.setText("Apellido Materno");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtCalle.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtCalle.getText().equals("Calle")) {
+                    txtCalle.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtCalle.getText().isEmpty()) {
+                    txtCalle.setText("Calle");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtCodigoPostal.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtCodigoPostal.getText().equals("Codigo Postal")) {
+                    txtCodigoPostal.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtCodigoPostal.getText().isEmpty()) {
+                    txtCodigoPostal.setText("Codigo Postal");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtNoExterior.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtNoExterior.getText().equals("No. Exterior")) {
+                    txtNoExterior.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtNoExterior.getText().isEmpty()) {
+                    txtNoExterior.setText("No. Exterior");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtColonia.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtColonia.getText().equals("Colonia")) {
+                    txtColonia.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtColonia.getText().isEmpty()) {
+                    txtColonia.setText("Colonia");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtFechaNacimiento.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtFechaNacimiento.getText().equals("Fecha de Nacimiento (aaaa/mm/dd)")) {
+                    txtFechaNacimiento.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtFechaNacimiento.getText().isEmpty()) {
+                    txtFechaNacimiento.setText("Fecha de Nacimiento (aaaa/mm/dd)");
+                }
+            }
+        });
     }
 
     /**

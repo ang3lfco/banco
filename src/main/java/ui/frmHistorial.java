@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,6 +28,40 @@ public class frmHistorial extends javax.swing.JFrame {
         
         this.idClienteEnSesion = id;
         cargarHistorial();
+        
+        // Agregar un FocusListener
+        txtFechaDesde.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtFechaDesde.getText().equals("desde (aaaa/mm/dd)")) {
+                    txtFechaDesde.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtFechaDesde.getText().isEmpty()) {
+                    txtFechaDesde.setText("desde (aaaa/mm/dd)");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtFechaHasta.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtFechaHasta.getText().equals("hasta (aaaa/mm/dd)")) {
+                    txtFechaHasta.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtFechaHasta.getText().isEmpty()) {
+                    txtFechaHasta.setText("hasta (aaaa/mm/dd)");
+                }
+            }
+        });
     }
 
     /**

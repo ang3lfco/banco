@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,6 +40,23 @@ public class frmCrearCuenta extends javax.swing.JFrame {
         txtIdCliente.setText(String.valueOf(idClienteEnSesion));
         txtFechaApertura.setEnabled(false);
         txtIdCliente.setEnabled(false);
+        
+        // Agregar un FocusListener
+        txtSaldo.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtSaldo.getText().equals("Saldo")) {
+                    txtSaldo.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtSaldo.getText().isEmpty()) {
+                    txtSaldo.setText("Saldo");
+                }
+            }
+        });
     }
 
     /**

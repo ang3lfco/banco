@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ux.ConexionBD;
-import ux.FormMoving;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
+import java.util.Arrays;
 
 /**
  *
@@ -28,6 +30,23 @@ public class frmLogin extends javax.swing.JFrame {
         //  Metodo de la clase Window.java para centrar la pantalla
         //  Si el componente es nulo la ventana es colocada en el centro de la pantalla
         setLocationRelativeTo(null);
+        
+        // Agregar un FocusListener
+        txtID.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtID.getText().equals("ID")) {
+                    txtID.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtID.getText().isEmpty()) {
+                    txtID.setText("ID");
+                }
+            }
+        });
         
 //        //  Instanciar la clase FormMoving y agregarla como listener al panel pnlMove
 //        pnlMove.addMouseListener(new FormMoving());

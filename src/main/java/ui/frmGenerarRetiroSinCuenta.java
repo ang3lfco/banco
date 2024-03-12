@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -29,6 +31,23 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
         
         this.idClienteEnSesion = id;
         cargarCuentasCliente();
+        
+        // Agregar un FocusListener
+        txtMonto.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtMonto.getText().equals("Monto")) {
+                    txtMonto.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtMonto.getText().isEmpty()) {
+                    txtMonto.setText("Monto");
+                }
+            }
+        });
     }
 
     /**

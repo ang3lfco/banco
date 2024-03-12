@@ -30,7 +30,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbCuentas" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                  <Component id="txtMonto" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="imgCancelar2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -50,7 +50,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cmbCuentas" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtMonto" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="imgCancelar2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
         <Property name="text" type="java.lang.String" value="Cuenta de Origen:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtMonto">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>

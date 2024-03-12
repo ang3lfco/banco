@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,6 +34,40 @@ public class frmTransferencia extends javax.swing.JFrame {
         
         this.idClienteEnSesion = id;
         cargarCuentasCliente();
+        
+        // Agregar un FocusListener
+        txtMonto.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtMonto.getText().equals("Monto")) {
+                    txtMonto.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtMonto.getText().isEmpty()) {
+                    txtMonto.setText("Monto");
+                }
+            }
+        });
+        
+        // Agregar un FocusListener
+        txtCuentaDestino.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtCuentaDestino.getText().equals("Cuenta de Destino")) {
+                    txtCuentaDestino.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtCuentaDestino.getText().isEmpty()) {
+                    txtCuentaDestino.setText("Cuenta de Destino");
+                }
+            }
+        });
     }
 
     /**

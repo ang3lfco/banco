@@ -28,8 +28,8 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextField2" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
+                  <Component id="txtFolio" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtClave" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="imgCancelar2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -45,9 +45,9 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="pnlMove" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtFolio" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+              <Component id="txtClave" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="imgCancelar2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -59,7 +59,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtFolio">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>
@@ -70,10 +70,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Numero de Folio"/>
+        <Property name="text" type="java.lang.String" value="Folio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="txtClave">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>
