@@ -24,6 +24,8 @@ public class frmPerfil extends javax.swing.JFrame {
     public frmPerfil(String id) {
         initComponents();
         setLocationRelativeTo(null);
+        
+        imgCancelar.requestFocusInWindow();
         this.idClienteEnSesion = id;
         cargarDatosCliente();
     }

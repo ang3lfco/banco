@@ -30,6 +30,7 @@ public class frmCrearCuenta extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        imgCancelar.requestFocusInWindow();
         this.idClienteEnSesion = id;
         
         LocalDate currentDate = LocalDate.now();

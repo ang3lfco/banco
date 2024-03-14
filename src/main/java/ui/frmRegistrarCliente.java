@@ -29,6 +29,7 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        imgCancelar.requestFocusInWindow();
         this.idClienteEnSesion = id;
         
         // Agregar un FocusListener

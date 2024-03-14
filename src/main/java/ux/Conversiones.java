@@ -10,7 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.JOptionPane;
+import java.util.Date;
 
 /**
  *
@@ -77,14 +80,14 @@ public class Conversiones {
                 pstm.setString(1, idCliente);
                 ResultSet rs = pstm.executeQuery();
                 while (rs.next()) {
-                    List<Object> operacion = new ArrayList<>();
-                    operacion.add(rs.getInt("folio"));
-                    operacion.add(rs.getDate("fechaOperacion"));
-                    operacion.add(rs.getString("tipoOperacion"));
-                    operacion.add(rs.getInt("cuentaOrigen"));
-                    operacion.add(rs.getInt("cuentaDestino"));
-                    operacion.add(rs.getDouble("monto"));
-                    historialOperaciones.add(operacion);
+                    List<Object> fila = new ArrayList<>();
+                    fila.add(rs.getInt("folio"));
+                    fila.add(rs.getDate("fechaOperacion"));
+                    fila.add(rs.getString("tipoOperacion"));
+                    fila.add(rs.getInt("cuentaOrigen"));
+                    fila.add(rs.getInt("cuentaDestino"));
+                    fila.add(rs.getDouble("monto"));
+                    historialOperaciones.add(fila);
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al cargar el historial. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -93,5 +96,33 @@ public class Conversiones {
             JOptionPane.showMessageDialog(null, "Error al cargar el historial." + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return historialOperaciones;
+    }
+
+    public List<List<Object>> obtenerHistorialPorPeriodo(String idCliente, Date desde, Date hasta){
+        List<List<Object>> historialPeriodo = new ArrayList<>();
+        try{
+            Connection conexion = ConexionBD.openConnection();
+            String consulta = "SELECT * FROM Operaciones WHERE id=? AND fechaOperacion BETWEEN ? AND ?";
+            PreparedStatement pstm = conexion.prepareStatement(consulta);
+            pstm.setString(1, idCliente);
+            pstm.setDate(2, new java.sql.Date(desde.getTime()));
+            pstm.setDate(3, new java.sql.Date(hasta.getTime()));
+            ResultSet rs = pstm.executeQuery();
+
+            while(rs.next()){
+                List<Object> fila = new ArrayList<>();
+                fila.add(rs.getInt("folio"));
+                fila.add(rs.getDate("fechaOperacion"));
+                fila.add(rs.getString("tipoOperacion"));
+                fila.add(rs.getInt("cuentaOrigen"));
+                fila.add(rs.getInt("cuentaDestino"));
+                fila.add(rs.getDouble("monto"));
+                historialPeriodo.add(fila);
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al cargar el historial por periodo." + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return historialPeriodo;
     }
 }

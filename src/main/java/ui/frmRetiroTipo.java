@@ -20,6 +20,7 @@ public class frmRetiroTipo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        imgCancelar.requestFocusInWindow();
         this.idClienteEnSesion = id;
     }
 
@@ -36,7 +37,7 @@ public class frmRetiroTipo extends javax.swing.JFrame {
         imgCerrar = new javax.swing.JLabel();
         imgMinimizar = new javax.swing.JLabel();
         imgAceptar = new javax.swing.JLabel();
-        imgCancelar3 = new javax.swing.JLabel();
+        imgCancelar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -97,12 +98,12 @@ public class frmRetiroTipo extends javax.swing.JFrame {
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        imgCancelar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
-        imgCancelar3.setText("Cancelar");
-        imgCancelar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        imgCancelar3.addMouseListener(new java.awt.event.MouseAdapter() {
+        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
+        imgCancelar.setText("Cancelar");
+        imgCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgCancelar3MouseClicked(evt);
+                imgCancelarMouseClicked(evt);
             }
         });
 
@@ -117,7 +118,7 @@ public class frmRetiroTipo extends javax.swing.JFrame {
                     .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRetiroCuentaPropia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(imgCancelar3)
+                        .addComponent(imgCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imgAceptar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -132,7 +133,7 @@ public class frmRetiroTipo extends javax.swing.JFrame {
                 .addComponent(btnRetiroCuentaPropia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imgCancelar3)
+                    .addComponent(imgCancelar)
                     .addComponent(imgAceptar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -166,19 +167,19 @@ public class frmRetiroTipo extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_imgMinimizarMouseClicked
 
-    private void imgCancelar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCancelar3MouseClicked
+    private void imgCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCancelarMouseClicked
         // TODO add your handling code here:
         this.dispose();
         frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
         menuPrincipal.setVisible(true);
-    }//GEN-LAST:event_imgCancelar3MouseClicked
+    }//GEN-LAST:event_imgCancelarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRetiroCuentaPropia;
     private javax.swing.JButton btnRetiroSinCuenta;
     private javax.swing.JLabel imgAceptar;
-    private javax.swing.JLabel imgCancelar3;
+    private javax.swing.JLabel imgCancelar;
     private javax.swing.JLabel imgCerrar;
     private javax.swing.JLabel imgMinimizar;
     private javax.swing.JPanel pnlMove;

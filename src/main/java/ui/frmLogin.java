@@ -30,7 +30,7 @@ public class frmLogin extends javax.swing.JFrame {
         //  Metodo de la clase Window.java para centrar la pantalla
         //  Si el componente es nulo la ventana es colocada en el centro de la pantalla
         setLocationRelativeTo(null);
-        
+        btnIniciarSesion.requestFocusInWindow();
         // Agregar un FocusListener
         txtID.addFocusListener(new FocusListener() {
             @Override

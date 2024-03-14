@@ -23,6 +23,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        imgCancelar.requestFocusInWindow();
         this.idClienteEnSesion = id;
         cargarCuentasCliente();
         
@@ -57,7 +58,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         cmbCuentas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
-        imgCancelar2 = new javax.swing.JLabel();
+        imgCancelar = new javax.swing.JLabel();
         imgAceptar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,12 +109,12 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
         txtMonto.setText("Monto");
 
-        imgCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
-        imgCancelar2.setText("Cancelar");
-        imgCancelar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        imgCancelar2.addMouseListener(new java.awt.event.MouseAdapter() {
+        imgCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
+        imgCancelar.setText("Cancelar");
+        imgCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgCancelar2MouseClicked(evt);
+                imgCancelarMouseClicked(evt);
             }
         });
 
@@ -133,7 +134,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
                     .addComponent(cmbCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(imgCancelar2)
+                        .addComponent(imgCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imgAceptar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -150,7 +151,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
                 .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imgCancelar2)
+                    .addComponent(imgCancelar)
                     .addComponent(imgAceptar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -170,12 +171,12 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_imgMinimizarMouseClicked
 
-    private void imgCancelar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCancelar2MouseClicked
+    private void imgCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCancelarMouseClicked
         // TODO add your handling code here:
         this.dispose();
         frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
         menuPrincipal.setVisible(true);
-    }//GEN-LAST:event_imgCancelar2MouseClicked
+    }//GEN-LAST:event_imgCancelarMouseClicked
 
     private void cargarCuentasCliente(){
         cmbCuentas.removeAllItems();
@@ -191,7 +192,7 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbCuentas;
     private javax.swing.JLabel imgAceptar;
-    private javax.swing.JLabel imgCancelar2;
+    private javax.swing.JLabel imgCancelar;
     private javax.swing.JLabel imgCerrar1;
     private javax.swing.JLabel imgMinimizar;
     private javax.swing.JLabel jLabel1;

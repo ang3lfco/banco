@@ -23,6 +23,7 @@ public class frmConsultarCuentas extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        imgVolver.requestFocusInWindow();
         this.idClienteEnSesion = id;
         cargarCuentas();
     }

@@ -32,6 +32,7 @@ public class frmTransferencia extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        imgCancelar.requestFocusInWindow();
         this.idClienteEnSesion = id;
         cargarCuentasCliente();
         

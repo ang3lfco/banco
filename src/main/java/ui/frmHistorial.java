@@ -6,6 +6,9 @@ package ui;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -27,6 +30,7 @@ public class frmHistorial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         this.idClienteEnSesion = id;
+        imgVolver.requestFocusInWindow();
         cargarHistorial();
         
         // Agregar un FocusListener
@@ -81,7 +85,7 @@ public class frmHistorial extends javax.swing.JFrame {
         pnlMove2 = new javax.swing.JPanel();
         imgCerrar2 = new javax.swing.JLabel();
         imgMinimizar2 = new javax.swing.JLabel();
-        imgVolver1 = new javax.swing.JLabel();
+        imgVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -95,6 +99,11 @@ public class frmHistorial extends javax.swing.JFrame {
         txtFechaHasta.setText("hasta (aaaa/mm/dd)");
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         tblHistorial.setBackground(new java.awt.Color(0, 51, 51));
         tblHistorial.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,12 +155,12 @@ public class frmHistorial extends javax.swing.JFrame {
             .addComponent(imgMinimizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        imgVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
-        imgVolver1.setText("Volver");
-        imgVolver1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        imgVolver1.addMouseListener(new java.awt.event.MouseAdapter() {
+        imgVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        imgVolver.setText("Volver");
+        imgVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgVolver1MouseClicked(evt);
+                imgVolverMouseClicked(evt);
             }
         });
 
@@ -166,7 +175,7 @@ public class frmHistorial extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(imgVolver1))
+                        .addComponent(imgVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblConsultarPeriodo)
@@ -195,7 +204,7 @@ public class frmHistorial extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(imgVolver1)
+                .addComponent(imgVolver)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -212,12 +221,52 @@ public class frmHistorial extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_imgMinimizar2MouseClicked
 
-    private void imgVolver1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgVolver1MouseClicked
+    private void imgVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgVolverMouseClicked
         // TODO add your handling code here:
         this.dispose();
         frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
         menuPrincipal.setVisible(true);
-    }//GEN-LAST:event_imgVolver1MouseClicked
+    }//GEN-LAST:event_imgVolverMouseClicked
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        String fechaDesde = txtFechaDesde.getText();
+        String fechaHasta = txtFechaHasta.getText();
+        Date desde = null;
+        Date hasta = null;
+        
+        try{
+            desde = new SimpleDateFormat("yyyy-MM-dd").parse(fechaDesde);
+            hasta = new SimpleDateFormat("yyyy-MM-dd").parse(fechaHasta);
+        }
+        catch(ParseException e){
+            JOptionPane.showMessageDialog(null, "Error en Fechas, capture el formato correcto: yyyy/mm/dd", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        HistorialPorPeriodo(desde, hasta);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+    
+    private void HistorialPorPeriodo(Date desde, Date hasta){
+        Conversiones conversiones = new Conversiones();
+        List<List<Object>> historial = conversiones.obtenerHistorialPorPeriodo(idClienteEnSesion, desde, hasta);
+        if(historial != null && !historial.isEmpty()){
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Folio");
+            model.addColumn("Fecha de Operacion");
+            model.addColumn("Tipo de Operacion");
+            model.addColumn("Cuenta Origen");
+            model.addColumn("Cuenta Destino");
+            model.addColumn("Monto");
+            for(List<Object> fila : historial){
+                model.addRow(fila.toArray());
+            }
+            tblHistorial.setModel(model);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "El historial esta vacio. ", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     
     private void cargarHistorial() {
         Conversiones conversiones = new Conversiones();
@@ -230,8 +279,8 @@ public class frmHistorial extends javax.swing.JFrame {
             model.addColumn("Cuenta Origen");
             model.addColumn("Cuenta Destino");
             model.addColumn("Monto");
-            for (List<Object> operacion : historial) {
-                model.addRow(operacion.toArray());
+            for (List<Object> fila : historial) {
+                model.addRow(fila.toArray());
             }
             tblHistorial.setModel(model);
         } else {
@@ -243,7 +292,7 @@ public class frmHistorial extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JLabel imgCerrar2;
     private javax.swing.JLabel imgMinimizar2;
-    private javax.swing.JLabel imgVolver1;
+    private javax.swing.JLabel imgVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblConsultarPeriodo;
