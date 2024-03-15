@@ -8,12 +8,14 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ux.ConexionBD;
 import ux.Conversiones;
+import java.sql.Statement;
 
 /**
  *
@@ -195,37 +197,54 @@ public class frmGenerarRetiroSinCuenta extends javax.swing.JFrame {
         String id = idClienteEnSesion;
         String numeroCuenta = cmbCuentas.getSelectedItem().toString();
         
-        try{
+        try {
             Connection conexion = ConexionBD.openConnection();
             conexion.setAutoCommit(false);
             
             String script = "INSERT INTO RetirosSC (folio, clave, monto, id, numeroCuenta) VALUES (SUBSTRING(UUID(), 1, 8), SUBSTRING(MD5(RAND()), 1, 8), ?, ?, ?)";
-            PreparedStatement pstm = conexion.prepareStatement(script);
+            PreparedStatement pstm = conexion.prepareStatement(script, Statement.RETURN_GENERATED_KEYS);
             pstm.setDouble(1, monto);
             pstm.setString(2, id);
             pstm.setString(3, numeroCuenta);
             
             int filasInsertadas = pstm.executeUpdate();
             if(filasInsertadas > 0){
-                String tipoOperacion = "GeneracionRetiroSC";
-                
-                String operacion = "INSERT INTO Operaciones (fechaOperacion, tipoOperacion, cuentaOrigen, "
-                        + "cuentaDestino, monto, id, numeroCuenta) "
-                        + "VALUES(CURDATE(), ?, ?, NULL, ?, ?, ?)";
-                PreparedStatement pstmOperacion = conexion.prepareStatement(operacion);
-                pstmOperacion.setString(1, tipoOperacion);
-                pstmOperacion.setString(2, numeroCuenta);
-                pstmOperacion.setDouble(3, monto);
-                pstmOperacion.setString(4, id);
-                pstmOperacion.setString(5, numeroCuenta);
-                
-                int filasInsertadasOp = pstmOperacion.executeUpdate();
-                if(filasInsertadasOp > 0){
-                    conexion.commit();
-                    JOptionPane.showMessageDialog(this, "Retiro generado con exito. ");
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "Error al generar la operacion. ");
+                    
+                ResultSet generatedKeys = pstm.getGeneratedKeys();
+                if(generatedKeys.next()){
+                    int idRetiroGenerado = generatedKeys.getInt(1);
+                    // consultar el folio y la clave del retiro generado
+                    String consultaFolioClave = "SELECT folio, clave FROM RetirosSC WHERE idRetiro = ?";
+                    PreparedStatement pstmFolioClave = conexion.prepareStatement(consultaFolioClave);
+                    pstmFolioClave.setInt(1, idRetiroGenerado);
+                    ResultSet rsFolioClave = pstmFolioClave.executeQuery();
+                    if (rsFolioClave.next()) {
+                        String folio = rsFolioClave.getString("folio");
+                        String clave = rsFolioClave.getString("clave");
+                        
+                        JOptionPane.showMessageDialog(null, "folio: " + folio + " || clave: " + clave);
+
+                        String tipoOperacion = "GeneracionRetiroSC";
+                    
+                        String operacion = "INSERT INTO Operaciones (fechaOperacion, tipoOperacion, cuentaOrigen, "
+                                + "cuentaDestino, monto, id, numeroCuenta) "
+                                + "VALUES(CURDATE(), ?, ?, NULL, ?, ?, ?)";
+                        PreparedStatement pstmOperacion = conexion.prepareStatement(operacion);
+                        pstmOperacion.setString(1, tipoOperacion);
+                        pstmOperacion.setString(2, numeroCuenta);
+                        pstmOperacion.setDouble(3, monto);
+                        pstmOperacion.setString(4, id);
+                        pstmOperacion.setString(5, numeroCuenta);
+                        
+                        int filasInsertadasOp = pstmOperacion.executeUpdate();
+                        if(filasInsertadasOp > 0){
+                            conexion.commit();
+                            JOptionPane.showMessageDialog(this, "Retiro generado con exito. ");
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Error al generar la operacion. ");
+                        }
+                    }
                 }
             }
             else{

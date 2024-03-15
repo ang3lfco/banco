@@ -20,17 +20,15 @@ import ux.ConexionBD;
  * @author Martinez
  */
 public class frmRegistrarCliente extends javax.swing.JFrame {
-    private String idClienteEnSesion;
     
     /**
      * Creates new form frmRegistrarUsuario
      */
-    public frmRegistrarCliente(String id) {
+    public frmRegistrarCliente() {
         initComponents();
         setLocationRelativeTo(null);
         
         imgCancelar.requestFocusInWindow();
-        this.idClienteEnSesion = id;
         
         // Agregar un FocusListener
         txtNombres.addFocusListener(new FocusListener() {
@@ -338,8 +336,8 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
     private void imgCerrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCerrar1MouseClicked
         // TODO add your handling code here:
         this.dispose();
-        frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
-        menuPrincipal.setVisible(true);
+        frmLogin login = new frmLogin();
+        login.setVisible(true);
     }//GEN-LAST:event_imgCerrar1MouseClicked
 
     private void imgMinimizar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMinimizar1MouseClicked
@@ -350,8 +348,8 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
     private void imgCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCancelarMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
-        menuPrincipal.setVisible(true);
+        frmLogin login = new frmLogin();
+        login.setVisible(true);
     }//GEN-LAST:event_imgCancelarMouseClicked
 
     private void imgAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAceptarMouseClicked
@@ -420,6 +418,9 @@ public class frmRegistrarCliente extends javax.swing.JFrame {
             } 
             finally{
                 ConexionBD.closeConnection(conexion);
+                this.dispose();
+                frmLogin login = new frmLogin();
+                login.setVisible(true);
             }
         }
         catch(SQLException e){

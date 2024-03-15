@@ -125,14 +125,24 @@ public class frmLogin extends javax.swing.JFrame {
         lblRegistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrar.setText("Registrarme");
         lblRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRegistrarMouseClicked(evt);
+            }
+        });
 
         lblRetiroSinCuenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRetiroSinCuenta.setText("Retiro Sin Cuenta");
         lblRetiroSinCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRetiroSinCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRetiroSinCuentaMouseClicked(evt);
+            }
+        });
 
         passfContraseña.setBackground(new java.awt.Color(0, 51, 51));
         passfContraseña.setForeground(new java.awt.Color(255, 255, 255));
-        passfContraseña.setText("Contraseña");
+        passfContraseña.setText("contraseña");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,36 +225,41 @@ public class frmLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Credenciales invalidas. Ingrese de nuevo... ");
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void lblRetiroSinCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRetiroSinCuentaMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        frmRetiroSinCuenta retiroSinCuenta = new frmRetiroSinCuenta();
+        retiroSinCuenta.setVisible(true);
+    }//GEN-LAST:event_lblRetiroSinCuentaMouseClicked
+
+    private void lblRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        frmRegistrarCliente registrarCliente = new frmRegistrarCliente();
+        registrarCliente.setVisible(true);
+    }//GEN-LAST:event_lblRegistrarMouseClicked
     
     private boolean validarCredenciales(){
         String id = txtID.getText();
         String contraseña = new String(passfContraseña.getPassword());
-        
-        try (Connection conexion = ConexionBD.openConnection()) {
-            String consulta = "SELECT contraseña FROM Clientes WHERE id = ?";
-            try (PreparedStatement pstm = conexion.prepareStatement(consulta)) {
-                pstm.setString(1, id);
-                try (ResultSet rs = pstm.executeQuery()) {
-                    if (rs.next()) {
-                        String contraseñaBD = rs.getString("contraseña");
-                        return contraseña.equals(contraseñaBD);
-                    } 
-                    else {
-                        return false;
-                    }
-                }
-                catch (SQLException e) {
-                    JOptionPane.showMessageDialog(this, "Error al ejecutar la consulta. " + e.getMessage());
-                    return false;
-                }
-            }
-            catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, "Error al preparar la consulta. " + e.getMessage());
+
+        try {
+            Connection conexion = ConexionBD.openConnection();
+            PreparedStatement pstm = conexion.prepareStatement("SELECT contraseña FROM Clientes WHERE id = ?");
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                String contraseñaBD = rs.getString("contraseña");
+                conexion.close();
+                return contraseña.equals(contraseñaBD);
+            } else {
+                conexion.close();
                 return false;
             }
-        }
-        catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al abrir la conexión. " + e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al validar sus credenciales. " + e.getMessage());
             return false;
         }
     }

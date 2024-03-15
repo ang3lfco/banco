@@ -1,6 +1,7 @@
 ui\frmRetiroTipo$2.class
 ui\frmMenuPrincipal.class
 ui\frmMenuPrincipal$5.class
+ui\frmLogin$5.class
 ui\frmMenuPrincipal$2.class
 ui\frmGenerarRetiroSinCuenta$1.class
 ux\FormMoving.class
@@ -13,6 +14,7 @@ ui\frmRetiroSinCuenta$3.class
 ui\frmRegistrarCliente$5.class
 ui\frmHistorial$5.class
 ui\frmRegistrarCliente.class
+ui\frmRetiroSinCuenta$6.class
 ui\frmRegistrarCliente$2.class
 ui\frmTransferencia$1.class
 ui\frmRetiroCuentaPropia$1.class
@@ -35,7 +37,6 @@ ux\SwingUtilities.class
 ui\frmTransferencia$6.class
 ux\ConexionBD.class
 ui\frmCrearCuenta.class
-dao\Domicilio.class
 ux\Conversiones.class
 ui\frmCrearCuenta$2.class
 ui\frmMenuPrincipal$9.class
@@ -47,11 +48,11 @@ ui\frmHistorial$3.class
 ui\frmHistorial$6.class
 ui\frmTransferencia$2.class
 ui\frmTransferencia$5.class
-dao\ClienteDAO.class
 ui\frmRegistrarCliente$6.class
 ui\frmRetiroSinCuenta$5.class
 ui\frmRetiroCuentaPropia.class
 ui\frmRetiroTipo.class
+ui\frmRetiroCuentaPropia$5.class
 ui\frmLogin$4.class
 ui\frmRetiroTipo$3.class
 ui\frmConsultarCuentas$1.class
@@ -79,5 +80,6 @@ ui\frmRetiroCuentaPropia$3.class
 ui\frmHistorial$4.class
 com\mycompany\banco\Banco.class
 ui\frmMenuPrincipal$4.class
+ui\frmLogin$6.class
 ui\frmRetiroTipo$5.class
 ui\frmGenerarRetiroSinCuenta.class

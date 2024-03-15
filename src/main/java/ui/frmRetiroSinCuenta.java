@@ -6,24 +6,29 @@ package ui;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import ux.ConexionBD;
 
 /**
  *
  * @author Martinez
  */
 public class frmRetiroSinCuenta extends javax.swing.JFrame {
-    private String idClienteEnSesion;
 
     /**
      * Creates new form frmRetiro
      */
-    public frmRetiroSinCuenta(String id) {
+    public frmRetiroSinCuenta() {
         initComponents();
         setLocationRelativeTo(null);
-        
         imgCancelar.requestFocusInWindow();
-        this.idClienteEnSesion = id;
         
         // Agregar un FocusListener
         txtFolio.addFocusListener(new FocusListener() {
@@ -33,7 +38,6 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
                     txtFolio.setText("");
                 }
             }
-
             @Override
             public void focusLost(FocusEvent e) {
                 if (txtFolio.getText().isEmpty()) {
@@ -46,11 +50,10 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
         txtClave.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (txtClave.getText().equals("clave")) {
+                if (txtClave.getText().equals("Clave")) {
                     txtClave.setText("");
                 }
             }
-
             @Override
             public void focusLost(FocusEvent e) {
                 if (txtClave.getText().isEmpty()) {
@@ -100,6 +103,11 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
         imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgAceptarMouseClicked(evt);
+            }
+        });
 
         pnlMove.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -170,15 +178,15 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
     private void imgCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCancelarMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
-        menuPrincipal.setVisible(true);
+        frmLogin login = new frmLogin();
+        login.setVisible(true);
     }//GEN-LAST:event_imgCancelarMouseClicked
 
     private void imgCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgCerrarMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        frmMenuPrincipal menuPrincipal = new frmMenuPrincipal(idClienteEnSesion);
-        menuPrincipal.setVisible(true);
+        frmLogin login = new frmLogin();
+        login.setVisible(true);
     }//GEN-LAST:event_imgCerrarMouseClicked
 
     private void imgMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMinimizarMouseClicked
@@ -186,7 +194,124 @@ public class frmRetiroSinCuenta extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_imgMinimizarMouseClicked
 
- 
+    private void imgAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAceptarMouseClicked
+        // TODO add your handling code here:
+        String folio = txtFolio.getText();
+        String clave = txtClave.getText();
+        int estado = consultarEstado(folio, clave);
+
+        switch (estado) {
+            case 0:
+                realizarRetiro(folio, clave);
+                int estadoNow = consultarEstado(folio, clave);
+                if(estadoNow == 1){
+                    JOptionPane.showMessageDialog(null, "Usted ha realizado su retiro, continue.");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al realizar el retiro.");
+                }   break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "El retiro ya fue realizado.");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Error al verificar el estado del retiro.");
+                break;
+        }
+    }//GEN-LAST:event_imgAceptarMouseClicked
+    
+    private int consultarEstado(String folio, String clave){
+        int estado = 0;
+        try{
+            Connection conexion = ConexionBD.openConnection();
+            String consulta = "SELECT estado FROM RetirosSC WHERE folio=? AND clave=?";
+            PreparedStatement pstm = conexion.prepareStatement(consulta);
+            pstm.setString(1, folio);
+            pstm.setString(2, clave);
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next()){
+                estado = rs.getInt("estado");
+            }
+            conexion.close();
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al consultar el estado. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return estado;
+    }
+
+    private void realizarRetiro(String folio, String clave) {
+        Connection conexion = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+    
+        try {
+            conexion = ConexionBD.openConnection();
+    
+            // Consultar el monto del retiro
+            String consultaMonto = "SELECT monto, numeroCuenta FROM RetirosSC WHERE folio = ? AND clave = ?";
+            pstm = conexion.prepareStatement(consultaMonto);
+            pstm.setString(1, folio);
+            pstm.setString(2, clave);
+            rs = pstm.executeQuery();
+    
+            if (rs.next()) {
+                double montoRetiro = rs.getDouble("monto");
+                String cuentaOrigen = rs.getString("numeroCuenta");
+    
+                // Obtener el saldo actual de la cuenta de origen
+                String consultaSaldo = "SELECT saldo FROM Cuentas WHERE numeroCuenta = ?";
+                pstm = conexion.prepareStatement(consultaSaldo);
+                pstm.setString(1, cuentaOrigen);
+                rs = pstm.executeQuery();
+    
+                if (rs.next()) {
+                    double saldoActual = rs.getDouble("saldo");
+    
+                    // Verificar si hay saldo suficiente
+                    if (saldoActual >= montoRetiro) {
+                        // Calcular el nuevo saldo
+                        double nuevoSaldo = saldoActual - montoRetiro;
+    
+                        // Actualizar el saldo
+                        String actualizarSaldo = "UPDATE Cuentas SET saldo = ? WHERE numeroCuenta = ?";
+                        pstm = conexion.prepareStatement(actualizarSaldo);
+                        pstm.setDouble(1, nuevoSaldo);
+                        pstm.setString(2, cuentaOrigen);
+                        pstm.executeUpdate();
+    
+                        // Marcar el retiro como cobrado
+                        String marcarCobrado = "UPDATE RetirosSC SET estado = 1 WHERE folio = ? AND clave = ?";
+                        pstm = conexion.prepareStatement(marcarCobrado);
+                        pstm.setString(1, folio);
+                        pstm.setString(2, clave);
+                        pstm.executeUpdate();
+    
+                        JOptionPane.showMessageDialog(null, "Retiro realizado exitosamente.", "Detalles", JOptionPane.INFORMATION_MESSAGE);
+                    } 
+                    else {
+                        JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar el retiro.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "No se encontraron detalles para este retiro.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al realizar el retiro. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstm != null) pstm.close();
+                if (conexion != null) conexion.close();
+            } 
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgAceptar;
     private javax.swing.JLabel imgCancelar;

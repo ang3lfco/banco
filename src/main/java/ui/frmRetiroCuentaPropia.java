@@ -6,8 +6,15 @@ package ui;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import ux.ConexionBD;
 import ux.Conversiones;
 
 /**
@@ -121,6 +128,11 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         imgAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
         imgAceptar.setText("Aceptar");
         imgAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imgAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgAceptarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,6 +190,13 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         menuPrincipal.setVisible(true);
     }//GEN-LAST:event_imgCancelarMouseClicked
 
+    private void imgAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAceptarMouseClicked
+        // TODO add your handling code here:
+        String cuentaOrigen = cmbCuentas.getSelectedItem().toString();
+        double monto = Double.parseDouble(txtMonto.getText());
+        realizarRetiro(cuentaOrigen, monto);
+    }//GEN-LAST:event_imgAceptarMouseClicked
+
     private void cargarCuentasCliente(){
         cmbCuentas.removeAllItems();
         Conversiones conversiones = new Conversiones();
@@ -186,6 +205,68 @@ public class frmRetiroCuentaPropia extends javax.swing.JFrame {
         for(List<Object> cuenta : cuentasCliente){
             String numeroCuenta = cuenta.get(0).toString();
             cmbCuentas.addItem(numeroCuenta);
+        }
+    }
+
+    private void realizarRetiro(String cuentaOrigen, double monto) {
+        try {
+            Connection conexion = ConexionBD.openConnection();
+            
+            // Obtener el saldo actual
+            double saldoActual = 0;
+            String consultaSaldo = "SELECT saldo FROM Cuentas WHERE numeroCuenta = ?";
+            PreparedStatement pstmSaldo = conexion.prepareStatement(consultaSaldo);
+            pstmSaldo.setString(1, cuentaOrigen);
+            ResultSet rsSaldo = pstmSaldo.executeQuery();
+            if (rsSaldo.next()) {
+                saldoActual = rsSaldo.getDouble("saldo");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro la cuenta.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            // Verificar si hay suficiente saldo para realizar el retiro
+            if (saldoActual < monto) {
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente en la cuenta.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            // Calcular el nuevo saldo después del retiro
+            double nuevoSaldo = saldoActual - monto;
+            
+            // Actualizar el saldo
+            String consultaActualizar = "UPDATE Cuentas SET saldo = ? WHERE numeroCuenta = ?";
+            PreparedStatement pstmActualizar = conexion.prepareStatement(consultaActualizar);
+            pstmActualizar.setDouble(1, nuevoSaldo);
+            pstmActualizar.setString(2, cuentaOrigen);
+            int filasActualizadas = pstmActualizar.executeUpdate();
+            
+            if (filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(null, "Retiro realizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                
+                // Obtener la fecha actual
+                java.util.Date fechaActual = new java.util.Date();
+                java.sql.Date fechaSQL = new java.sql.Date(fechaActual.getTime());
+                
+                // Insertar en la tabla Operaciones
+                String consultaOperacion = "INSERT INTO Operaciones (fechaOperacion, tipoOperacion, cuentaOrigen, monto, id, numeroCuenta) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement pstmOperacion = conexion.prepareStatement(consultaOperacion);
+                pstmOperacion.setDate(1, fechaSQL);
+                pstmOperacion.setString(2, "RetiroCP");
+                pstmOperacion.setString(3, cuentaOrigen);
+                pstmOperacion.setDouble(4, monto);
+                pstmOperacion.setString(5, idClienteEnSesion);
+                pstmOperacion.setString(6, cuentaOrigen);
+                pstmOperacion.executeUpdate();
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "Error al realizar el retiro.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            conexion.close();
+        } catch 
+        (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al realizar el retiro. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
