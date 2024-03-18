@@ -22,8 +22,12 @@ La aplicación cuenta con una interfaz gráfica de usuario (GUI) intuitiva y fá
 ``` src/main/java/ux/ConexionBD. ```
 4. Ejecuta la aplicación y comienza a explorar sus características.
 
+### Modelo entidad-relación de la Base de Datos
+![banco drawio](https://github.com/ang3lfco/banco/assets/149128034/43b6a5a4-88e4-4c7c-97f7-2ea71269606f)
+
 ### Contribuciones
 Las contribuciones son bienvenidas. Si encuentras algún error o brecha de seguridad, no dudes en abrir un issue o enviar un pull request.
 
 ### Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles
+
